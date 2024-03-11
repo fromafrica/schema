@@ -2,13 +2,13 @@ CREATE TABLE IF NOT EXISTS `users` (
   `id` TEXT PRIMARY KEY,
   `json` TEXT,
   `hash` TEXT,
-  `timestamp` DATETIME DEFAULT CURRENT_TIMESTAMP
+  `timestamp` DATETIME DEFAULT CURRENT_TIMESTAMP,
 
   `username` TEXT as (json_extract(`json`,'$.username')) STORED UNIQUE,
   `email` TEXT as (json_extract(`json`,'$.email')) STORED UNIQUE,
   `password` TEXT as (json_extract(`json`,'$.password')) STORED,
   `picture` TEXT as (json_extract(`json`,'$.picture')) STORED,
-  `phone` TEXT as (json_extract(`json`,'$.phone')) STORED UNIQUE,
+  `phone` TEXT as (json_extract(`json`,'$.phone')) STORED UNIQUE
 
 );
 
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `auth` (
   `userId` TEXT,
   `json` TEXT,
   `hash` TEXT,
-  `timestamp` DATETIME DEFAULT CURRENT_TIMESTAMP
+  `timestamp` DATETIME DEFAULT CURRENT_TIMESTAMP,
 
   `token` TEXT as (json_extract(`json`,'$.token')) STORED UNIQUE,
   `validated` TEXT as (json_extract(`json`,'$.validated')) STORED,
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `auth` (
   `phoneCode` TEXT as (json_extract(`json`,'$.phoneCode')) STORED,
   `device` TEXT as (json_extract(`json`,'$.device')) STORED,
   `ip` TEXT as (json_extract(`json`,'$.ip')) STORED,
-  `location` TEXT as (json_extract(`json`,'$.location')) STORED,
+  `location` TEXT as (json_extract(`json`,'$.location')) STORED
 
 );
 
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `refresh` (
   `authId` TEXT,
   `json` TEXT,
   `hash` TEXT,
-  `timestamp` DATETIME DEFAULT CURRENT_TIMESTAMP
+  `timestamp` DATETIME DEFAULT CURRENT_TIMESTAMP,
 
   `token` TEXT UNIQUE,
   `validated` TEXT,
@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `refresh` (
   `phoneCode` TEXT,
   `device` TEXT,
   `ip` TEXT,
-  `location` TEXT,
+  `location` TEXT
 
 );
 
